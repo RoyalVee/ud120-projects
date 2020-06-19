@@ -34,7 +34,7 @@ def prettyPicture(clf, X_test, y_test):
     plt.ylabel("grade")
 
     plt.savefig("test.png")
-""""
+
 import base64
 import json
 import subprocess
@@ -47,4 +47,4 @@ def output_image(name, format, bytes):
     data['format'] = format
     data['bytes'] = base64.encodestring(bytes)
     print(image_start + json.dumps(data) + image_end)
-                                    """
+
