@@ -12,9 +12,21 @@ def outlierCleaner(predictions, ages, net_worths):
     """
     
     cleaned_data = []
+    error = []
+    error2 = []
+    for i in range(len(predictions)):
+        error.append(abs(net_worths[i] - predictions[i]))
+        error2.append((net_worths[i] - predictions[i]))
+    error.sort()
+    split = int(len(error)*0.1)
+    errcut = error[len(error)-split]
+    checker = error[len(error)-split : len(error)]
 
     ### your code goes here
-
-    
+    for i in range(len(error2)):
+        if abs(error2[i]) in checker:
+            continue
+        else:
+            cleaned_data.append((ages[i], net_worths[i], error2[i]))
     return cleaned_data
 
