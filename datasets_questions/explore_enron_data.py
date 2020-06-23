@@ -47,7 +47,7 @@ print("total number of emails from Wesley Colwell to persons of interest = {}".f
 print(enron_data)
 names = list(enron_data.keys())
 for i in names:
-     if 'lay'.upper() in i:
+     if 'skilling'.upper() in i:
          print(i)
          print(i,':', enron_data[i], '\n')
 
@@ -75,3 +75,39 @@ for keys in enron_data.keys():
     if enron_data[keys]["poi"] == 1 and enron_data[keys]["total_payments"] == "NaN":
         count_POI_total_pay_NAN += 1
 print(count_POI_total_pay_NAN)
+
+high_b1 = 0
+high_s1 = 0
+high_b2 = 0
+high_s2 = 0
+high_b3 = 0
+high_s3 = 0
+high_b4 = 0
+high_s4 = 0
+high_b5 = 0
+high_s5 = 0
+keyy1 = ''
+keyy2 = ''
+keyy3 = ''
+keyy4 = ''
+keyy5 = ''
+for keys in enron_data.keys():
+    if enron_data[keys]['salary'] == 'NaN' or enron_data[keys]['bonus'] == 'NaN':
+        continue
+    elif int(enron_data[keys]['salary']) >= high_s1 and int(enron_data[keys]['bonus']) >= high_b1:
+        high_s5 = high_s4
+        high_s4 = high_s3
+        high_s3 = high_s2
+        high_s2 = high_s1
+        high_s1 = int(enron_data[keys]['salary'])
+        high_b5 = high_b4
+        high_b4 = high_b3
+        high_b3 = high_b2
+        high_b2 = high_b1
+        high_b1 = int(enron_data[keys]['bonus'])
+        keyy5 = keyy4
+        keyy4 = keyy3
+        keyy3 = keyy2
+        keyy2 = keyy1
+        keyy1 = keys
+print(keyy1,".....", keyy2,"....",keyy3,"...", keyy4, "...", keyy5)
